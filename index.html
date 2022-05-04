@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>vue practice</title>
+        <script src="https://unpkg.com/vue@3.0.2"></script>
+        <style>
+            body{
+                display: flex;     
+            }
+            li.fav{
+                background-color: palevioletred;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app" class="box">
+            <!-- here we create an object to toggle visibility of certain elements. conditional rendering show v-if is used -->
+            <div v-if = "showBooks">
+                <!-- a list of books using vue!!! -->
+                <ul>
+                    <!-- I have defined books as an array object inside the root component in the app.js file -->
+                    <!-- v-for is used to cycle over a an array if data and output a list of them instead of you doing so manually -->
+                    <li v-for = "book in books" :class = "{fav:book.isfav}" @click = "undoFav(book)">
+                        <img :src="book.img" alt="book.title">
+                        <h3> {{book.title}} </h3>
+                        <p> {{book.author}} </p>
+                    </li>
+                </ul>
+            </div>
+            <!-- this is the button to be used to toggle the view the toggling function is defined in the root component conditional rendering is implemented-->
+            <button @click = "toggleShowBooks">
+                <!-- here we define two modes depending on whether the content is showing or not not -->
+                <!-- this button will display when the content is not hidden -->
+                <span v-if = "showBooks">hide books </span>
+                <!-- displays when the content is hidden -->
+                <span v-else>show books</span>
+            </button>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
